@@ -2,7 +2,10 @@
   <div id="app">
     <div id="nav">
       <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link> |
+      <router-link to="/form/basic-form">BasicForm</router-link> |
+      <router-link to="/form/step-form">StepForm</router-link> |
+      <router-link to="/exception">Exception</router-link> |
+      <router-link to="/profile">Profile</router-link> |
       <router-link to="/user/login">Login</router-link> |
       <router-link to="/user/register">Register</router-link>
     </div>
