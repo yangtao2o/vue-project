@@ -4,7 +4,7 @@
 
 <script>
 export default {
-  name: "HeaderArea"
+  name: "HomeHeader"
 };
 </script>
 
@@ -13,6 +13,8 @@ export default {
   .header {
     height: 3.5rem;
     line-height: 3.5rem;
+    font-size: 1.5rem;
+    font-weight: bolder;
   }
 }
 </style>

@@ -1,17 +1,14 @@
 <template>
   <div id="app">
-    <header-area></header-area>
-    <header-swiper></header-swiper>
+    <Home />
   </div>
 </template>
 
 <script>
-import HeaderArea from "./components/HeaderArea";
-import HeaderSwiper from "./components/HeaderSwiper";
+import Home from "./views/Home";
 export default {
   components: {
-    HeaderArea,
-    HeaderSwiper
+    Home
   }
 };
 </script>

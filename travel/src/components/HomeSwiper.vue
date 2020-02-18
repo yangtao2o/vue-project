@@ -11,7 +11,7 @@
 
 <script>
 export default {
-  name: "HeaderSwiper",
+  name: "HomeSwiper",
   data() {
     return {
       swiperList: [1, 2, 3, 4, 5, 6],
