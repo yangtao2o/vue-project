@@ -1,2 +1,3 @@
-# vue-project
-基于Vue的一些练手项目
+# Vue Project
+
+基于 Vue 的一些练手项目

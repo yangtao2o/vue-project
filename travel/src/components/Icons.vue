@@ -53,7 +53,7 @@ export default {
   li {
     width: 25%;
     font-size: 1rem;
-    padding: 0.6rem;
+    padding: 1rem;
     box-sizing: border-box;
   }
 }

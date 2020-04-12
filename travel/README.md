@@ -1,24 +1,33 @@
-# travel
+# Travel
 
 ## Project setup
-```
-npm install
-```
 
-### Compiles and hot-reloads for development
-```
+```bash
+npm install
 npm run serve
 ```
 
-### Compiles and minifies for production
-```
-npm run build
-```
+## 入口文件
 
-### Lints and fixes files
-```
-npm run lint
-```
+```js
+import Vue from "vue";
+import App from "./App.vue";
+import router from "./router";
+import FastClick from "fastclick"; // https://github.com/ftlabs/fastclick
+import VueAwesomeSwiper from "vue-awesome-swiper";
+import "swiper/dist/css/swiper.min.css";
+import "normalize.css"; // https://necolas.github.io/normalize.css/
+import "hairline"; // https://github.com/ufologist/hairline
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+// Polyfill to remove click delays on browsers with touch UIs
+FastClick.attach(document.body);
+
+Vue.config.productionTip = false;
+
+Vue.use(VueAwesomeSwiper, {}); // https://segmentfault.com/a/1190000014609379
+
+new Vue({
+  router,
+  render: h => h(App)
+}).$mount("#app");
+```

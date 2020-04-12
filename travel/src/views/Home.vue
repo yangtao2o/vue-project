@@ -3,6 +3,9 @@
     <home-header></home-header>
     <home-swiper></home-swiper>
     <icons :iconsList="iconsList"></icons>
+    <hr>
+    <home-list></home-list>
+    <hr>
   </div>
 </template>
 
@@ -11,6 +14,7 @@
 import HomeHeader from "@/components/HomeHeader";
 import HomeSwiper from "@/components/HomeSwiper";
 import Icons from "@/components/Icons";
+import HomeList from "@/components/HomeList";
 import axios from "axios";
 
 export default {
@@ -23,7 +27,8 @@ export default {
   components: {
     HomeHeader,
     HomeSwiper,
-    Icons
+    Icons,
+    HomeList
   },
   mounted() {
     this.getHomeInfo();
@@ -32,12 +37,14 @@ export default {
     getHomeInfo() {
       axios("/mock/index.json")
         .then(res => {
-          console.log(res);
-          if (res.statusText === "OK") {
-            this.iconsList = res.data.iconsList;
-          }
+          this.getHomeInfoSucc(res);
         })
         .catch(err => console.log(err));
+    },
+    getHomeInfoSucc(res) {
+      if (res.statusText === "OK") {
+        this.iconsList = res.data.iconsList;
+      }
     }
   }
 };
@@ -49,5 +56,8 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  hr {
+    border-color: #ddd;
+  }
 }
 </style>
