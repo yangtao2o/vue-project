@@ -8,9 +8,10 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    name: 'app',
     component: App,
     children: [
+      // 当 / 匹配成功，
+      // Home 会被渲染在 App 的 <router-view> 中
       {
         path: '',
         component: Home

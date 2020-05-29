@@ -8,6 +8,6 @@ export default {
     }
   },
   initializeData({ commit }) {
-    commit('INITIALIZEDATA')
+    commit('INITIALIZE_DATA')
   }
 }

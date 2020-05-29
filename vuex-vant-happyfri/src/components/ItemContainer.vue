@@ -1,8 +1,10 @@
 <template>
   <section>
     <header class="top_tips">
-      <span class="num_tip" v-if="fatherComponent === 'home'">第一周</span>
-      <span class="num_tip" v-if="fatherComponent === 'item'">题目一</span>
+      <span class="num_tip" v-if="fatherComponent === 'home'">{{ level }}</span>
+      <span class="num_tip" v-if="fatherComponent === 'item'"
+        >题目{{ itemNum }}</span
+      >
     </header>
     <!--Home Start-->
     <div v-if="fatherComponent === 'home'">
@@ -48,6 +50,8 @@
 </template>
 
 <script>
+import { Dialog } from 'vant'
+import { mapState, mapActions } from 'vuex'
 export default {
   name: 'ItemContainer',
   props: {
@@ -60,67 +64,61 @@ export default {
     return {
       itemId: null, //题目ID
       choosedNum: null, //选中答案索引
-      choosedId: null, //选中答案id
-      itemNum: 1,
-      level: 1,
-      timer: null,
-      itemDetail: [
-        {
-          topic_id: 20,
-          active_topic_id: 4,
-          type: 'ONE',
-          topic_name: '题目一',
-          active_id: 1,
-          active_title: '欢乐星期五标题',
-          active_topic_phase: '第一周',
-          active_start_time: '1479139200',
-          active_end_time: '1482163200',
-          topic_answer: [
-            {
-              topic_answer_id: 1,
-              topic_id: 20,
-              answer_name: '答案aaaa',
-              is_standard_answer: 0
-            },
-            {
-              topic_answer_id: 2,
-              topic_id: 20,
-              answer_name: '正确答案',
-              is_standard_answer: 0
-            },
-            {
-              topic_answer_id: 3,
-              topic_id: 20,
-              answer_name: '答案cccc',
-              is_standard_answer: 0
-            },
-            {
-              topic_answer_id: 4,
-              topic_id: 20,
-              answer_name: '答案dddd',
-              is_standard_answer: 1
-            }
-          ]
-        }
-      ]
+      choosedId: null //选中答案id
+    }
+  },
+  computed: {
+    ...mapState([
+      'itemNum', // 第几题
+      'level', // 第几周
+      'timer', // 定时器
+      'itemDetail' // 题目内容
+    ])
+  },
+  methods: {
+    ...mapActions([
+      'addNum', // 下一题
+      'initializeData' // 初始化
+    ]),
+    chooseType(type) {
+      switch (type) {
+        case 0:
+          return 'A'
+        case 1:
+          return 'B'
+        case 2:
+          return 'C'
+        case 3:
+          return 'D'
+      }
+    },
+    choosed(type, id) {
+      this.choosedNum = type
+      this.choosedId = id
+    },
+    nextItem() {
+      if (this.choosedNum !== null) {
+        this.choosedNum = null
+        this.addNum(this.choosedId)
+      } else {
+        Dialog({ message: '您还没有选择答案哦' })
+      }
+    },
+    submitAnswer() {
+      if (this.choosedNum !== null) {
+        this.addNum(this.choosedId)
+        if (this.timer) clearInterval(this.timer)
+        this.$router.push('score')
+      } else {
+        Dialog({ message: '您还没有选择答案哦' })
+      }
     }
   },
   created() {
     if (this.fatherComponent === 'home') {
-      // this.initializeData();
-      document.body.style.backgroundImage = 'url(./1-1.jpg)';
-      console.log('created')
+      this.initializeData()
+      document.body.style.backgroundImage = 'url(./1-1.jpg)'
     }
-  },
-  methods: {
-    nextItem() {},
-    chooseType(type) {
-      console.log(type)
-    },
-    choosed(type, id) {
-      console.log(type, id)
-    },
-    submitAnswer() {}
   }
 }
 </script>

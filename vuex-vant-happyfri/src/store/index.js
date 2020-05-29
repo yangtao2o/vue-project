@@ -11,13 +11,12 @@ const state = {
   itemNum: 1, // 第几题
   allTime: 0, //总共用时
   timer: '', //定时器
-  answerid: [], //答案id
+  answerId: [], //答案id
   itemDetail
 }
 
 export default new Vuex.Store({
   state,
   mutations,
-  actions,
-  modules: {}
+  actions
 })

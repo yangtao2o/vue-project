@@ -8,7 +8,7 @@ export default {
     state.itemNum += num
   },
   [REMBER_ANSWER](state, id) {
-    state.answerid = id
+    state.answerId.push(id)
   },
   [REMBER_TIME](state) {
     state.timer = setInterval(() => {
@@ -19,6 +19,6 @@ export default {
   [INITIALIZE_DATA](state) {
     state.itemNum = 1
     state.allTime = 0
-    state.answerid = []
+    state.answerId = []
   }
 }
